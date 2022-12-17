@@ -1,0 +1,296 @@
+[
+    {
+        "id": "f8bc4040d57c269a",
+        "type": "tab",
+        "label": "MQTT-AWS-SERVER",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c760089cbc778342",
+        "type": "mqtt-check",
+        "z": "f8bc4040d57c269a",
+        "host": "3.0.18.123",
+        "port": "1883",
+        "username": "user1",
+        "password": "password1",
+        "name": "",
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "bc0a73d4555f8cae"
+            ]
+        ]
+    },
+    {
+        "id": "bc0a73d4555f8cae",
+        "type": "debug",
+        "z": "f8bc4040d57c269a",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "mqttCheck.connected",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "510146b831dcf569",
+        "type": "inject",
+        "z": "f8bc4040d57c269a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "c760089cbc778342"
+            ]
+        ]
+    },
+    {
+        "id": "5a2dcac80f54fb1e",
+        "type": "mqtt in",
+        "z": "f8bc4040d57c269a",
+        "name": "",
+        "topic": "light/test",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7b4bef16b060fb57",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "be0f1e3a0fdd798e",
+                "fcbaa4ecb62e37f4"
+            ]
+        ]
+    },
+    {
+        "id": "c08b2ac8a9692301",
+        "type": "mqtt out",
+        "z": "f8bc4040d57c269a",
+        "name": "",
+        "topic": "light/test",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7b4bef16b060fb57",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "be0f1e3a0fdd798e",
+        "type": "debug",
+        "z": "f8bc4040d57c269a",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "66e0c90e464bf828",
+        "type": "comment",
+        "z": "f8bc4040d57c269a",
+        "name": "Subscribe to My AWS Mosquitto",
+        "info": "",
+        "x": 230,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5e02f508f3564c41",
+        "type": "inject",
+        "z": "f8bc4040d57c269a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "qos",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "p": "retain",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "light/test",
+        "payload": "\"Lights On\"",
+        "payloadType": "str",
+        "x": 210,
+        "y": 200,
+        "wires": [
+            [
+                "c08b2ac8a9692301"
+            ]
+        ]
+    },
+    {
+        "id": "0ad1050a4a0ba454",
+        "type": "debug",
+        "z": "f8bc4040d57c269a",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fcbaa4ecb62e37f4",
+        "type": "function",
+        "z": "f8bc4040d57c269a",
+        "name": "function 7",
+        "func": "if (msg.payload==\"Lights On\")\n    msg.payload=\"1\";\nelse\n    msg.payload=\"0\";\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "0ad1050a4a0ba454"
+            ]
+        ]
+    },
+    {
+        "id": "e25306db612e077a",
+        "type": "comment",
+        "z": "f8bc4040d57c269a",
+        "name": "Check MQTT Server Connection",
+        "info": "node-red-contrib-mqtt-connection-check\n",
+        "x": 210,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "66ef54e2f68f1c63",
+        "type": "comment",
+        "z": "f8bc4040d57c269a",
+        "name": "Trigger input to My Mosquitto AWS Server",
+        "info": "node-red-contrib-mqtt-broker",
+        "x": 240,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ce428d11eb57a95",
+        "type": "inject",
+        "z": "f8bc4040d57c269a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "qos",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "p": "retain",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "light/test",
+        "payload": "\"Lights Off\"",
+        "payloadType": "str",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "c08b2ac8a9692301"
+            ]
+        ]
+    },
+    {
+        "id": "7b4bef16b060fb57",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "3.0.18.123",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
