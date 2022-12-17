@@ -1,6 +1,14 @@
 # MQTT Server + Node Red + Javascript Vue.js
  This project highlights the use of __*AWS*__ Linux Server with __*Dockerized Mosquitto MQTT Server + Node Red MQTT (Client 1) + MQTT JavaScript (Client 2) + Vite Vue.js*__
  
+## Node Red Dependencies
+1.  node-red-contrib-mqtt-broker
+
+2. node-red-contrib-mqtt-connection-check 
+
+__Example:__
+![image](https://user-images.githubusercontent.com/86276701/208245377-79878ba8-aba8-4da2-8da0-2a7b35d95e33.png)
+
 
 ## Linux Server installation steps
 
