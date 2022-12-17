@@ -56,5 +56,8 @@ Command lines are as follow below:
         <img alt="MQTT" src="https://user-images.githubusercontent.com/86276701/208244592-3fede491-82ba-48fd-aa86-bdbf0011114c.png" width="300" >
      </a>
 
+Example of the Project Server with Client Interaction:
+
+https://user-images.githubusercontent.com/86276701/208246006-7cfe679c-4e06-49bf-b91d-1cf98ebbf4df.mp4
 
 
