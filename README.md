@@ -22,7 +22,8 @@ Command lines are as follow below:
 
 ### Docker CE 
 
-> 1.
+    1.
+    2.
 > 2.
 > 3.
 
